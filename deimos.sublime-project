@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": "/Users/q3boy/codes/deimos",
+      "folder_exclude_patterns": [
+        "coverage",
+        "report"
+      ],
+      "file_exclude_patterns": [
+        ".zip",
+        "*.sublime-*"
+      ]
+    }
+  ],
+  "syntax_override": {
+    "test-\\w+\\.coffee$": [
+      "Mocha Chai CoffeeScript",
+      "Syntaxes",
+      "Mocha Chai CoffeeScript"
+    ]
+  }
+}

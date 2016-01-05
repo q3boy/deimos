@@ -1,0 +1,6 @@
+tests
+node_modules
+coverage
+.sublime-gulp.cache
+.sublime-project
+.sublime-workspace

@@ -37,7 +37,9 @@ class Faker
       address : address @key, @data.address
     @
 
-  next : -> v.next() for k,v of @vars
+  next : ->
+    v.next() for k,v of @vars
+    @
 
   fake : (tpl, vars={}) ->
     v = os @vars, vars

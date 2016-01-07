@@ -58,4 +58,6 @@ class Lorem
     paras += @paragraph() while i++ < num
     paras
 
+  next :  ->
+
 module.exports = (key, opt) -> new Lorem key, opt

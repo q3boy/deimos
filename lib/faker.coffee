@@ -6,6 +6,12 @@ rand    = require 'jrands'
 os      = require './options'
 lodash  = require 'lodash'
 
+lorem   = require './lorem'
+number  = require './number'
+date    = require './date'
+person  = require './person'
+address = require './address'
+
 dir = path.join __dirname, '../locale'
 
 parseList = (str)->
@@ -20,15 +26,27 @@ class Faker
     [opt] = args.filter (v)-> 'object' is typeof v
     @key = key or ''
     @options = os {data_list: [], locale: 'zh_CN'}, opt
-    @readLocale()
+    @readLocale().initFakers()
+
+  initFakers : ->
+    @vars =
+      lorem : lorem @key, @data.lorem
+      number : number @key
+      date : date @key
+      person : person @key, @data.person
+      address : address @key, @data.address
+    @
+
+  next : -> v.next() for k,v of @vars
 
   fake : (tpl, vars={}) ->
+    v = os @vars, vars
     codes = coffee.compile 'return "'+tpl+'"', bare:true
-    keys = Object.keys(vars)
+    keys = Object.keys(v)
     args = []
-    args.push vars[key] for key in keys
+    args.push v[key] for key in keys
     func = new Function keys, codes
-    func.apply {}, keys
+    func.apply {}, args
 
   readLocale: ->
     dataList = [path.join __dirname, '../locale/', "#{@options.locale}.yaml"]
@@ -39,12 +57,12 @@ class Faker
       address :
         data : data.address.data
         patterns : data.address.patterns
-      gender : data.gender
       date : data.date
-      name :
-        pattern : data.name.pattern
-        lastName : parseList data.name.lastName
-        firstName : parseList data.name.firstName
+      person :
+        name : data.person.name
+        gender : parseList data.person.gender
+        lastName : parseList data.person.lastName
+        firstName : parseList data.person.firstName
       phone :
         format  : data.phone.format
         country : data.phone.country
@@ -58,8 +76,7 @@ class Faker
         words : parseList data.lorem.words
         marks : parseList data.lorem.marks
 
-    @data.address[k] = parseList v for k, v of @data.address.data
-    console.log @data
+    @data.address.data[k] = parseList v for k, v of @data.address.data
 
     @
 

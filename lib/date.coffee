@@ -15,13 +15,12 @@ class MyDate extends ItemRandom
         year: 'YYYY', month: 'M', day: 'D', week: 'w', weekday: 'e'
         hour: 'H', minute: 'm', second: 's', zone: 'Z'
     }, opt
-    super
+    super {}, key
     hideProp 'toString', -> @fulltime
 
   next : ->
     @moment = moment().subtract @random(@options.min, @options.max) * 86400, 'seconds'
     @[k] = @moment.format v for k,v of @options.patterns
-    @format = @moment.format.bind @moment
     @
 
   format : (fmt)-> @moment.format fmt

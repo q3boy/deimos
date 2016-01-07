@@ -27,7 +27,7 @@ class Address extends ItemRandom
         no : ["###号"]
         buildingName: ["柳岸景", "蓝天苑", "裕泽"]
         buildingSuffix : ["广场", "大厦", "小区"]
-        buildingNo : ["#-##-###", "##-##"]
+        buildingNo : ["#-#-###", "1#-#-###", "#-##", "1#-##"]
         zipcode : ["######"]
     }, opt
     super @options.data, key

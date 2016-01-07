@@ -1,5 +1,4 @@
 __predefine:
-  gender: ['男', '女']
   address :
     patterns :
       state: "#{stateName}#{stateSuffix}"
@@ -21,10 +20,11 @@ __predefine:
       no : "###号"
       buildingName: "柳岸景,蓝天苑,裕泽,清缘里,郦,绿城百合,龙城花园,绿城星洲,龙德嘉,丽都水岸,丽高王府,靓景明居,利景名门,龙聚,柳清居,莲香园,铭科,马坡,美欣,明月,南极星,纳帕溪谷,南苑,品阁,蒲华,苹果,蓬莱,鹏润,返回,清城,晴翠,清水,青龙湖,清逸,瑞都,润枫德尚,人济,瑞康家园,儒林,融,水岸芳,百丽,顺驰,圣都,时代,上地,上林,书香,舒雅,绿洲"
       buildingSuffix : "广场,大厦,中心,城,园,山庄,公寓,公馆,小区"
-      buildingNo : "#-##-###,##-##"
+      buildingNo : "#-#-###,1#-#-###,#-##,1#-##"
       zipcode : "######"
-  name:
-    pattern : "#{lastName}#{firstName}"
+  person:
+    name : "#{lastName}#{firstName}"
+    gender: "男,女"
     lastName: "王,李,张,刘,陈,杨,黄,孙,赵,吴,周,徐,马,朱,胡,郭,何,高,罗,林,上官,"
     firstName: |
       伟,刚,勇,毅,俊,峰,强,军,平,保,东,文,辉,力,明,永,健,世,广,志,义,兴,良,海,山,仁,

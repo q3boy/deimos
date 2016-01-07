@@ -4,7 +4,8 @@
       "path": "/Users/q3boy/codes/deimos",
       "folder_exclude_patterns": [
         "coverage",
-        "report"
+        "report",
+        "dist"
       ],
       "file_exclude_patterns": [
         ".zip",

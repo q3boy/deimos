@@ -4,7 +4,7 @@ numeral = require 'numeral'
 
 class MyNumber
 
-  constructor : (key, opt)->
+  constructor : (key)->
 
     hideProp = (name, value) => Object.defineProperty @, name, value: value
     jrand = jrands hash33 key
@@ -19,5 +19,5 @@ class MyNumber
   int : (args...) -> @random args, '0', 0, 0x7fffffff
   float : (args...) -> @random args, '0[.]000', 0, 0xffff
   percent : (args...) -> @random args, '0[.]00%', 0, 2
-
-module.exports = (key, opt) -> new MyNumber key, opt
+  next :  ->
+module.exports = (key) -> new MyNumber key

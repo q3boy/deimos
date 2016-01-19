@@ -10,6 +10,7 @@ lorem   = require './lorem'
 number  = require './number'
 date    = require './date'
 person  = require './person'
+phone  = require './phone'
 address = require './address'
 
 dir = path.join __dirname, '../locale'
@@ -35,6 +36,8 @@ class Faker
       date : date @key
       person : person @key, @data.person
       address : address @key, @data.address
+      phone : phone @key, @data.phone, 'phone'
+      mobile : phone @key, @data.mobile, 'mobile'
     @
 
   next : ->

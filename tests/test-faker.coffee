@@ -52,6 +52,8 @@ describe 'Faker', ->
         e(Number.isInteger 1 * fake.fake '#{number}').to.be.ok
         e(fake.fake '#{address}').to.be.length.above 8
         e(fake.fake '#{date}').to.be.match /^\d{4}-\d{2}-\d{2} \d\d:\d\d:\d\d$/
+        e(fake.fake '#{phone}').to.be.match /^\d{3,4}-\d{8}$/
+        e(fake.fake '#{mobile}').to.be.match /^\d{3}-\d{4}-\d{4}$/
       it 'next works fine', ->
         fake = faker()
         out1 = [

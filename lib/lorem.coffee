@@ -1,4 +1,3 @@
-# {ItemRandom} = require './item'
 jrands = require 'jrands'
 os = require './options'
 {hash33, random} = require './util'

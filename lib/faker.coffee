@@ -66,20 +66,15 @@ class Faker
         lastName : parseList data.person.lastName
         firstName : parseList data.person.firstName
       phone :
-        format  : data.phone.format
+        phone  : parseList data.phone.phone
+        mobile : parseList data.phone.mobile
         country : data.phone.country
-        prefix  : parseList data.phone.prefix
-      mobile :
-        format  : data.mobile.format
-        country : data.mobile.country
-        prefix  : parseList data.mobile.prefix
       lorem :
         space : data.lorem.space
         words : parseList data.lorem.words
         marks : parseList data.lorem.marks
 
     @data.address.data[k] = parseList v for k, v of @data.address.data
-
     @
 
 module.exports = (args...)->

@@ -19,14 +19,11 @@ describe 'Faker', ->
       e(person.firstName).to.have.length.above 3
 
       phone = fake.data.phone
-      e(phone.prefix).to.have.length.above 3
+      e(phone).to.have.property 'phone'
+      e(phone).to.have.property 'mobile'
       e(phone).to.have.property 'country'
-      e(phone).to.have.property 'format'
-
-      mobile = fake.data.mobile
-      e(mobile.prefix).to.have.length.above 3
-      e(mobile).to.have.property 'country'
-      e(mobile).to.have.property 'format'
+      e(phone.phone).to.have.length.above 2
+      e(phone.mobile).to.have.length.above 2
 
       lorem = fake.data.lorem
       e(lorem).to.have.property 'space'

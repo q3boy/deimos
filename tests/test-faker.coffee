@@ -1,5 +1,5 @@
 {expect: e} = require 'chai'
-faker = require '../lib/faker'
+faker = require '../index'
 
 describe 'Faker', ->
   describe 'locale', ->

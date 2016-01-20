@@ -68,4 +68,6 @@ describe 'Faker', ->
         num = 0
         num++ for i in [0...5] when out1[i] isnt out2[i]
         e(num).to.be.above 3
-
+      it 'parse template with vars', ->
+        fake = faker()
+        e(fake.fake '#{person} #{var1}', var1:'aaa').to.be.match /^.{2,4} aaa/

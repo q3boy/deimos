@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.alibaba-inc.com:mars/deimos.git"
+    "url": "https://github.com/q3boy/deimos.git"
   },
   "keywords": [
     "faker"
   ],
-  "author": "清笃 <qingdu@alibaba-inc.com>",
+  "author": "q3boy <q3boy1@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "coffee-script": "^1.10.0",

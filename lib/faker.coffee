@@ -82,3 +82,4 @@ class Faker
 
 module.exports = (args...)->
   new Faker args
+module.exports.os = os

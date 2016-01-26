@@ -35,13 +35,15 @@ gulp.task 'coffee', ['clean'], ->
     .pipe coffee bare: true
     .on 'error', util.log
     .pipe gulp.dest './dist/'
-    .on 'finish', ->
-      futil.copySync 'locale', 'dist/locale', (err) ->
-        throw err if err
-      futil.copySync 'tests/options', path.join(__dirname, '../dist/tests/options'), (err) ->
-        throw err if err
 
 gulp.task 'cover', ['coffee'], ->
+
+  futil.copySync 'index.js', 'dist/index.js', (err) ->
+    throw err if err
+  futil.copySync 'locale', 'dist/locale', (err) ->
+    throw err if err
+  futil.copySync 'tests/options', path.join(__dirname, '../dist/tests/options'), (err) ->
+    throw err if err
   gulp.src './dist/lib/**/*.js'
     .pipe istanbul()
     .pipe istanbul.hookRequire()

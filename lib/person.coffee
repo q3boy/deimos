@@ -13,15 +13,21 @@ class Person extends ItemRandom
       lastName: ["王","李","张"]
       firstName: ["伟","英杰","柔","初夏"]
     }, opt
+    hideProp '__key', key
 
-    map = gender: @options.gender, firstName : @options.firstName, lastName: @options.lastName
-    (@birthDay = date key).toString = -> @format 'YYYY-MM-DD'
+    (birthday = date key).toString = -> @format 'YYYY-MM-DD'
+    map =
+      gender: @options.gender
+      firstName : @options.firstName
+      lastName: @options.lastName
+
     super map, key
     hideProp 'toString', -> @name
 
   next : () ->
-    @birthDay.next() if @age?
-    @age = Math.floor (new Date().valueOf() - @birthDay.moment.valueOf()) / 1000 / 86400 / 365
+    (@birthday = date @__key).toString = -> @format 'YYYY-MM-DD'
+    @age = Math.floor (new Date().valueOf() - @birthday.moment.valueOf()) / 1000 / 86400 / 365
+    @nominalAge = Math.ceil (new Date().valueOf() - @birthday.moment.valueOf()) / 1000 / 86400 / 365 + 1
     super
     @name = tpl @options.name, {@firstName, @lastName}
 

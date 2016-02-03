@@ -26,3 +26,4 @@ describe 'Address', ->
     e(a.county).to.be.eql '龙泉县'
     e(a.road).to.be.match /^四会路/
     e(a.building).to.be.match /^柳岸景广场/
+    e(a.zipcode).to.match /^\d{6}$/

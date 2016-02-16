@@ -15,7 +15,6 @@ class Person extends ItemRandom
     }, opt
     hideProp '__key', key
 
-    (birthday = date key).toString = -> @format 'YYYY-MM-DD'
     map =
       gender: @options.gender
       firstName : @options.firstName

@@ -7,7 +7,16 @@ floor = Math.floor
 class Lorem
   constructor : (key, opt)->
     hideProp = (name, value) => Object.defineProperty @, name, value: value
-    options = os {words:[], marks:[], space: '', pair: ratio:0.1, pad:2, min:1, max:3}, opt
+    options = os {
+      words:[], marks:[], space: ''
+      defaultSize :
+        words : [3,  15]
+        sentences : [3,  10]
+        paragraphs : [2,  5]
+      pair:
+        ratio:0.1, pad:2
+        min:1, max:3
+      }, opt
     jrand = jrands hash33 key
 
     hideProp 'options',    options
@@ -23,12 +32,13 @@ class Lorem
   word : -> @randomList @options.words
 
   words : (args...)->
-    words = []; i = 0; num = floor @random 3, 20, args # words number
+    words = []; i = 0
+    num = floor @random @options.defaultSize.words[0], @options.defaultSize.words[1], args
     words.push @word() while i++ < num
     words.join @options.space
 
   sentence : ->
-    words = []; i = 0; num = floor @random 3, 20 # words number
+    words = []; i = 0; num = floor @random @options.defaultSize.words[0], @options.defaultSize.words[1]
     # no paired marks
     if @random 0, 1 > @options.pair.ratio
       words.push @word() while i++ < num
@@ -45,7 +55,8 @@ class Lorem
     words.join(@options.space) + @randomList @marks
 
   sentences : (args...)->
-    sents = []; i = 0; num = floor @random 3, 20, args # sentence number
+    sents = []; i = 0
+    num = floor @random @options.defaultSize.sentences[0], @options.defaultSize.sentences[1], args
     sents.push @sentence() while i++ < num
     sents.join @options.space
 
@@ -53,7 +64,8 @@ class Lorem
     @sentences() + "\n"
 
   paragraphs : (args...)->
-    paras = []; i = 0; num = floor @random 3, 20, args # paragraph number
+    paras = []; i = 0
+    num = floor @random @options.defaultSize.paragraphs[0], @options.defaultSize.paragraphs[1], args
     paras += @paragraph() while i++ < num
     paras
 

@@ -12,12 +12,10 @@ os       = require 'os'
 cp       = require 'child_process'
 deps     = require './deps'
 
-
-
 cs    = ['lib/**/*.coffee']
 js    = ["lib/**/*.js"]
 tests = ['tests/**/test-*.coffee']
-clean = ['coverage']
+clean = ['coverage', 'dist']
 
 wfiles = js.concat(cs).concat(tests)
 
@@ -35,6 +33,15 @@ gulp.task 'coffee', ['clean'], ->
     .pipe coffee bare: true
     .on 'error', util.log
     .pipe gulp.dest './dist/'
+
+
+gulp.task 'publish', ['coffee'], ->
+  futil.copySync 'locale', 'dist/locale', (err) ->
+    throw err if err
+  futil.copySync 'tests/options', path.join(__dirname, '../dist/tests/options'), (err) ->
+    throw err if err
+  gulp.src './dist/tests/**/test-*.js', read: false
+    .pipe mocha reporter: noti.decorate 'tap'
 
 gulp.task 'cover', ['coffee'], ->
 

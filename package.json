@@ -1,13 +1,16 @@
 {
   "name": "mars-deimos",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "faker lib for phobos",
-  "main": "index.js",
+  "main": "./index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "prepublish": "gulp publish",
+    "postpublish": "gulp clean"
+
   },
   "repository": {
     "type": "git",

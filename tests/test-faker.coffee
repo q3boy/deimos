@@ -1,35 +1,7 @@
 {expect: e} = require 'chai'
-faker = require '../index'
+faker = require '../lib/faker'
 
 describe 'Faker', ->
-  describe 'locale', ->
-    it 'load default fake data', ->
-      fake = faker()
-
-      {data, patterns} = fake.data.address
-      e(patterns).to.have.property 'full'
-      e(data).to.have.property 'country'
-      e(data).to.have.property 'citySuffix'
-      e(data.citySuffix).to.have.length.above 1
-
-      person = fake.data.person
-      e(person.name).to.contain '#{firstName}'
-      e(person.name).to.contain '#{lastName}'
-      e(person.lastName).to.have.length.above 3
-      e(person.firstName).to.have.length.above 3
-
-      phone = fake.data.phone
-      e(phone).to.have.property 'phone'
-      e(phone).to.have.property 'mobile'
-      e(phone).to.have.property 'country'
-      e(phone.phone).to.have.length.above 2
-      e(phone.mobile).to.have.length.above 2
-
-      lorem = fake.data.lorem
-      e(lorem).to.have.property 'space'
-      e(lorem.words).to.have.length.above 3
-      e(lorem.marks).to.have.length.above 3
-
   describe 'tpl', ->
     describe 'without built-in vars', ->
       it 'parse template without vars', ->

@@ -6,11 +6,13 @@ rand    = require 'jrands'
 os      = require './options'
 lodash  = require 'lodash'
 
+locale  = require './locale'
+
 lorem   = require './lorem'
 number  = require './number'
 date    = require './date'
 person  = require './person'
-phone  = require './phone'
+phone   = require './phone'
 address = require './address'
 
 dir = path.join __dirname, '../locale'
@@ -27,7 +29,8 @@ class Faker
     [opt] = args.filter (v)-> 'object' is typeof v
     @key = key or ''
     @options = os {data_list: [], locale: 'zh_CN'}, opt
-    @readLocale().initFakers()
+    @data = locale[@options.locale]
+    @initFakers()
 
   initFakers : ->
     @vars =
@@ -52,33 +55,6 @@ class Faker
     args.push v[key] for key in keys
     func = new Function keys, codes
     func.apply {}, args
-
-  readLocale: ->
-    dataList = [path.join __dirname, '../locale/', "#{@options.locale}.yaml"]
-    dataList.concat @options.data_list
-    {__predefine: data} = os.apply {}, dataList
-    # @data = {}
-    @data =
-      address :
-        data : data.address.data
-        patterns : data.address.patterns
-      date : data.date
-      person :
-        name : data.person.name
-        gender : parseList data.person.gender
-        lastName : parseList data.person.lastName
-        firstName : parseList data.person.firstName
-      phone :
-        phone  : parseList data.phone.phone
-        mobile : parseList data.phone.mobile
-        country : data.phone.country
-      lorem :
-        space : data.lorem.space
-        words : parseList data.lorem.words
-        marks : parseList data.lorem.marks
-
-    @data.address.data[k] = parseList v for k, v of @data.address.data
-    @
 
 module.exports = (args...)->
   new Faker args

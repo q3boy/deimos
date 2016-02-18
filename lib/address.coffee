@@ -43,9 +43,5 @@ class Address extends ItemRandom
     @full = tpl @options.patterns.full, @, rand
     for k in Object.keys @
       @[k] = @[k].replace(/\s+/g, ' ').trim()
-# a = new Address 'key3'
-# for i in [0...100]
-#   console.log "#{a}"
-#   a.next()
 
 module.exports = (key, opt)-> new Address key, opt

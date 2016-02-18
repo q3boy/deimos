@@ -37,46 +37,46 @@ describe 'Options Stream', ->
     e(c.a).to.be.eql 1
     e(c.d).to.be.eql 4
     e(c).to.not.have.property 'b'
-  describe 'File Format', ->
-    it 'ini file', ->
-      c = options "#{__dirname}/options/config.ini"
-      exp =
-        number1: '1'
-        true1: 'yes'
-        false1: 'FALSE'
-        true2: 'On'
-        string1: 'abcde'
-        string2: 'abcde'
-        slash1: 'slash"slash'
-        slash2: 'slash\'slash'
-        slash3: 'slash\nslash'
-        level1:
-          level2: '1'
-          level3:
-            level4: '1'
-      e(c).to.eql exp
-    it 'json file', ->
-      c = options "#{__dirname}/options/config.json"
-      e(c).to.eql {a:123}
+  # describe 'File Format', ->
+  #   it 'ini file', ->
+  #     c = options "#{__dirname}/options/config.ini"
+  #     exp =
+  #       number1: '1'
+  #       true1: 'yes'
+  #       false1: 'FALSE'
+  #       true2: 'On'
+  #       string1: 'abcde'
+  #       string2: 'abcde'
+  #       slash1: 'slash"slash'
+  #       slash2: 'slash\'slash'
+  #       slash3: 'slash\nslash'
+  #       level1:
+  #         level2: '1'
+  #         level3:
+  #           level4: '1'
+  #     e(c).to.eql exp
+  #   it 'json file', ->
+  #     c = options "#{__dirname}/options/config.json"
+  #     e(c).to.eql {a:123}
 
-    it 'yaml file', ->
-      c = options "#{__dirname}/options/config.yml"
-      e(1).to.be.eql 1
-      exp =
-        number1: 1
-        true1: true
-        false1: false
-        true2: true
-        string1: 'abcde'
-        string2: "abcde"
-        string3: 'abcde'
-        slash1: "slash'slash"
-        slash2: 'slash"slash'
-        slash3: "slash\tslash"
-        slash4: "slash\nslash"
-        level1:
-          level2: '1'
-          level3:
-            level4: '1'
-        array1: [ 1, 2, true, false, 'asdfg' ]
-      e(c).to.eql exp
+  #   it 'yaml file', ->
+  #     c = options "#{__dirname}/options/config.yml"
+  #     e(1).to.be.eql 1
+  #     exp =
+  #       number1: 1
+  #       true1: true
+  #       false1: false
+  #       true2: true
+  #       string1: 'abcde'
+  #       string2: "abcde"
+  #       string3: 'abcde'
+  #       slash1: "slash'slash"
+  #       slash2: 'slash"slash'
+  #       slash3: "slash\tslash"
+  #       slash4: "slash\nslash"
+  #       level1:
+  #         level2: '1'
+  #         level3:
+  #           level4: '1'
+  #       array1: [ 1, 2, true, false, 'asdfg' ]
+  #     e(c).to.eql exp

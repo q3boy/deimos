@@ -1,6 +1,3 @@
-yaml    = require 'js-yaml'
-fs      = require 'fs'
-path    = require 'path'
 coffee  = require 'coffee-script'
 rand    = require 'jrands'
 os      = require './options'
@@ -15,7 +12,6 @@ person  = require './person'
 phone   = require './phone'
 address = require './address'
 
-dir = path.join __dirname, '../locale'
 
 parseList = (str)->
   list = []
@@ -28,8 +24,8 @@ class Faker
     [key] = args.filter (v)-> 'string' is typeof v
     [opt] = args.filter (v)-> 'object' is typeof v
     @key = key or ''
-    @options = os {data_list: [], locale: 'zh_CN'}, opt
-    @data = locale[@options.locale]
+    @options = os {locale: 'zh_CN', locale_data: {}}, opt
+    @data = os locale[@options.locale], @options.locale_data
     @initFakers()
 
   initFakers : ->
